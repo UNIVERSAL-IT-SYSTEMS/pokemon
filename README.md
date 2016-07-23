@@ -1,2 +1,2 @@
 # pokemon
-pokemon nearby alert
+pokemon nearby alert CLI
