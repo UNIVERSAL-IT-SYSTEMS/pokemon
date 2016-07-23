@@ -1,5 +1,6 @@
 # pokemon
 pokemon nearby alert with ignore list
+
 using nice node library: https://github.com/Armax/Pokemon-GO-node-api
 
 ## usage
