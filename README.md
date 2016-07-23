@@ -1,18 +1,18 @@
 # pokemon
-pokemon nearby alert CLI
+pokemon nearby alert with ignore list
+using nice node library: https://github.com/Armax/Pokemon-GO-node-api
 
 ## usage
 
-Setup 5 environment variables:
+```
+git clone https://github.com/drom/pokemon.git
+cd pokemon
+npm i
 
-```sh
-#!/bin/sh
 export PGO_USERNAME=your.name@gmail.com
 export PGO_PASSWORD=your.password
 export PGO_LOCATION=37.0000,-121.0000
 export PGO_IGNORE=Caterpie,Weedle,Pidgey
-```
 
-```
 node nearby.js
 ```
