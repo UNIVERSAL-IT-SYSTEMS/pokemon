@@ -5,7 +5,7 @@ pokemon nearby alert CLI
 
 Setup 5 environment variables:
 
-```
+```sh
 #!/bin/sh
 export PGO_USERNAME=your.name@gmail.com
 export PGO_PASSWORD=your.password
