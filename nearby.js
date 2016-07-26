@@ -8,10 +8,10 @@ var exec = require('child_process').exec;
 //Set environment variables or replace placeholder text
 var location = {
     type: 'name',
-    name: process.env.PGO_LOCATION || '37.4031647,-121.9697857'
+    name: process.env.PGO_LOCATION || '37.776534, -122.417529'
 };
 
-var ignore = process.env.PGO_IGNORE || 'Caterpie,Weedle,Pidgey,Rattata,Spearow,Ekans,Zubat,Paras,Diglett,Meowth,Mankey';
+var ignore = process.env.PGO_IGNORE || 'Charmander,Caterpie,Weedle,Kakuna,Pidgey,Pidgeotto,Pidgeot,Rattata,Raticate,Spearow,Fearow,Ekans,Arbok,Pikachu,Sandshrew,Nidoran ♀,Nidoran ♂,Jigglypuff,Zubat,Golbat,Paras,Parasect,Venonat,Diglett,Dugtrio,Meowth,Persian,Psyduck,Mankey,Growlithe,Abra,Machop,Bellsprout,Geodude,Exeggcute,Cubone,Rhyhorn,Eevee';
 var username = process.env.PGO_USERNAME || 'USER';
 var password = process.env.PGO_PASSWORD || 'PASSWORD';
 var provider = process.env.PGO_PROVIDER || 'google';
@@ -49,26 +49,37 @@ Pokeio.init(username, password, location, provider, function(err) {
                 if(err) {
                     console.log(err);
                 }
-                hb.cells.forEach(function (cell) {
-                    cell.NearbyPokemon.forEach(function (pokemon) {
-                        pokemons.pokemon.forEach(function (pok) {
-                            if (pokemon.PokedexNumber == pok.id) {
-                                if (toIgnore[pok.name] === undefined) {
-                                    console.log(pok.name);
-                                    exec(
-                                        playSound,
-                                        function (err, stdout, stderr) {
-                                            if (err) { console.error(err); return; }
-                                            console.log(stdout);
-                                        }
-                                    );
+                if (hb) {
+                    hb.cells.forEach(function (cell) {
+                        cell.NearbyPokemon.forEach(function (pokemon) {
+                            pokemons.pokemon.forEach(function (pok) {
+                                if (pokemon.PokedexNumber == pok.id) {
+                                    if (toIgnore[pok.name] == undefined) {
+                                        // console.log(JSON.stringify(hb, null, 4));
+                                        console.log(pok.name);
+                                        cell.DecimatedSpawnPoint.forEach(function (loc) {
+                                            console.log('https://www.google.com/maps/@' + loc.Latitude + ',' + loc.Longitude);
+                                        });
+                                        cell.DecimatedSpawnPoint.forEach(function (loc) {
+                                            console.log(loc.Latitude + ',' + loc.Longitude);
+                                        });
+                                        exec(
+                                            playSound,
+                                            function (err, stdout, stderr) {
+                                                if (err) { console.error(err); return; }
+                                                console.log(stdout);
+                                            }
+                                        );
+                                    }
                                 }
-                            }
+                            });
                         });
                     });
-                });
-                console.log('---');
+                    console.log('---');
+                } else {
+                    console.log('-');
+                }
             });
-        }, 20000);
+        }, 30000);
     });
 });
